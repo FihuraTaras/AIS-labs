@@ -1,0 +1,19 @@
+Using /etc/ansible/ansible.cfg as config file
+
+PLAY [Update hostname on remote server] ****************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [20.164.19.232]
+
+TASK [Set hostname using hostnamectl] ******************************************
+changed: [20.164.19.232] => {"changed": true, "cmd": ["hostnamectl", "set-hostname", "name-surename-lab2"], "delta": "0:00:00.085968", "end": "2025-03-10 21:06:32.262677", "msg": "", "rc": 0, "start": "2025-03-10 21:06:32.176709", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+TASK [Update /etc/hostname file] ***********************************************
+ok: [20.164.19.232] => {"changed": false, "checksum": "fda6d47cba20c9dec450be1e47aebfc2d901982f", "dest": "/etc/hostname", "gid": 0, "group": "root", "mode": "0644", "owner": "root", "path": "/etc/hostname", "size": 18, "state": "file", "uid": 0}
+
+TASK [Reboot to apply changes] *************************************************
+changed: [20.164.19.232] => {"changed": true, "elapsed": 28, "rebooted": true}
+
+PLAY RECAP *********************************************************************
+20.164.19.232              : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

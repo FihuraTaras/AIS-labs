@@ -1,0 +1,2 @@
+[my_servers]
+20.164.19.232 ansible_user=azureuser ansible_ssh_private_key_file=~/Downloads/t.yaroslavovych_key.pem

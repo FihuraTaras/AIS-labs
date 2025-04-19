@@ -1,8 +1,20 @@
+provider "aws" {
+  region = var.region
+  access_key = "AKIA6GBMFG2RNIJODH3P"
+  secret_key = "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"
+}
+
 resource "aws_instance" "my-vm" {
-  ami           = "ami-0faab6bdbac9486fb" # Amazon Linux 2 (зазвичай доступний)
-  instance_type = "t2.micro"              # (Free Tier)
+  count         = 2
+  ami           = lookup(var.ec2_ami, var.region)
+  instance_type = var.instance_type
 
   tags = {
-    Name = "example-instance"
+    Name = "my-vm-${count.index + 1}"
   }
+}
+
+resource "local_file" "tf_ip" {
+  content  = "[ALL]\n${aws_instance.my-vm[0].public_ip} ansible_ssh_user=ubuntu"
+  filename = "./inventory"
 }
